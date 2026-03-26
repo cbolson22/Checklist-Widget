@@ -26,7 +26,8 @@ const COLOR_NO_DATA = new Color("#1C1C1E");
 
 function completionColor(count) {
   if (count === 0) return new Color("#FF3B30"); // red
-  if (count <= 2) return new Color("#FF9500"); // orange
+  if (count === 1) return new Color("#FF9500"); // orange
+  if (count === 2) return new Color("#FFCC00"); // amber
   if (count === 3) return new Color("#FFD60A"); // yellow
   if (count === 4) return new Color("#34C759"); // green
   return new Color("#32FF6A"); // bright green (5/5)
@@ -230,7 +231,7 @@ leg.layoutHorizontally();
 leg.spacing = 2;
 leg.centerAlignContent();
 
-const legendEntries = [null, 0, 1, 3, 4, 5];
+const legendEntries = [null, 0, 1, 2, 3, 4, 5];
 for (const c of legendEntries) {
   const ld = leg.addStack();
   ld.size = new Size(7, 7);
