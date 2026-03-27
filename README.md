@@ -6,13 +6,13 @@ Home screen widgets for the [Scriptable](https://scriptable.app) iOS app, synced
 
 ### Daily Checklist
 
-A medium (4×2) home screen widget with a daily to-do checklist on the left and a 35-day GitHub-style completion history graph on the right.
+A medium (4×2) home screen widget with a daily to-do checklist on the left and a 49-day GitHub-style completion history graph on the right.
 
 **Features:**
 
 - 5 configurable daily tasks with emoji icons
 - Auto-resets each day at midnight
-- Tracks completion history for 35 days
+- Tracks completion history for 49 days
 - Color-coded history graph (red → dark orange → orange → yellow → light green → dark green) based on how many tasks were completed
 - Tap the widget to open a sheet and toggle tasks without leaving the home screen
 
@@ -48,7 +48,7 @@ Icons and tasks must stay in the same order. Any number of tasks can be used (la
 
 ## How it works
 
-State is stored in `checklist_data.json` alongside the script, synced via iCloud. On each new day, the previous day's completion count is archived into a history map before the checklist resets.
+State is stored in `checklist_data.json` alongside the script, synced via iCloud. On each new day, the previous day's full `checked` array is archived into a history map before the checklist resets, preserving which specific tasks were completed each day.
 
 ## Requirements
 

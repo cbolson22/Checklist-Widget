@@ -49,9 +49,9 @@ async function loadData() {
       if (raw.date === TODAY) {
         return { checked: raw.checked, history };
       }
-      // New day — archive yesterday's final count
+      // New day — archive yesterday's checked array
       if (raw.date && Array.isArray(raw.checked)) {
-        history[raw.date] = raw.checked.filter(Boolean).length;
+        history[raw.date] = raw.checked;
       }
     } catch (e) {}
   }
@@ -103,6 +103,7 @@ main.spacing = 0;
 // ── LEFT: Checklist ───────────────────────────────────────────────────────────
 const left = main.addStack();
 left.layoutVertically();
+left.size = new Size(150, 0);
 
 // Header
 const hdr = left.addStack();
@@ -157,34 +158,34 @@ if (allDone) {
 // ── SEPARATOR ─────────────────────────────────────────────────────────────────
 const sepWrap = main.addStack();
 sepWrap.size = new Size(1, 0);
-main.addSpacer(12);
+main.addSpacer(8);
 
 const sep = sepWrap.addStack();
 sep.size = new Size(1, 0);
 sep.backgroundColor = COLOR_SEP;
 sepWrap.addSpacer();
 
-main.addSpacer(12);
+main.addSpacer(8);
 
 // ── RIGHT: History graph ───────────────────────────────────────────────────────
 const right = main.addStack();
 right.layoutVertically();
-right.size = new Size(85, 0);
+right.size = new Size(115, 0);
 
 const gLabel = right.addText("History");
 gLabel.font = Font.boldSystemFont(10);
 gLabel.textColor = COLOR_MUTED;
 right.addSpacer(6);
 
-// Date grid setup — 5 weeks × 7 days (GitHub contribution graph style)
-// Column 0 = oldest week, column 4 = current week
+// Date grid setup — 7 weeks × 7 days (GitHub-style contribution graph)
+// Column 0 = oldest week, column 6 = current week
 // Row 0 = Sunday, row 6 = Saturday
 const todayDate = new Date();
 todayDate.setHours(0, 0, 0, 0);
 const dow = todayDate.getDay();
 
 const startDate = new Date(todayDate);
-startDate.setDate(todayDate.getDate() - dow - 28); // Sunday of 4 weeks ago
+startDate.setDate(todayDate.getDate() - dow - 42); // Sunday of 6 weeks ago
 
 const DOT = 13;
 const GAP = 3;
@@ -199,7 +200,7 @@ for (let row = 0; row < 7; row++) {
   rowStack.layoutHorizontally();
   rowStack.spacing = GAP;
 
-  for (let col = 0; col < 5; col++) {
+  for (let col = 0; col < 7; col++) {
     const d = new Date(startDate);
     d.setDate(startDate.getDate() + col * 7 + row);
 
@@ -212,10 +213,11 @@ for (let row = 0; row < 7; row++) {
     } else {
       const key = d.toDateString();
       if (key === TODAY) {
-        dot.backgroundColor =
-          doneCount === 0 ? COLOR_NO_DATA : completionColor(doneCount);
+        dot.backgroundColor = completionColor(doneCount);
       } else if (history.hasOwnProperty(key)) {
-        dot.backgroundColor = completionColor(history[key]);
+        const entry = history[key];
+        const cnt = Array.isArray(entry) ? entry.filter(Boolean).length : entry;
+        dot.backgroundColor = completionColor(cnt);
       } else {
         dot.backgroundColor = COLOR_NO_DATA;
       }
