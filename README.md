@@ -13,7 +13,7 @@ A medium (4×2) home screen widget with a daily to-do checklist on the left and 
 - 5 configurable daily tasks with emoji icons
 - Auto-resets each day at midnight
 - Tracks completion history for 35 days
-- Color-coded history graph (red → orange → amber → yellow → green) based on how many tasks were completed
+- Color-coded history graph (red → dark orange → orange → yellow → light green → dark green) based on how many tasks were completed
 - Tap the widget to open a sheet and toggle tasks without leaving the home screen
 
 **Setup:**
@@ -40,11 +40,11 @@ Icons and tasks must stay in the same order. Any number of tasks can be used (la
 | ------------ | ------------- |
 | Dark gray    | No data       |
 | Red          | 0/5 completed |
-| Orange       | 1/5 completed |
-| Amber        | 2/5 completed |
+| Dark orange  | 1/5 completed |
+| Orange       | 2/5 completed |
 | Yellow       | 3/5 completed |
-| Green        | 4/5 completed |
-| Bright green | 5/5 completed |
+| Light green  | 4/5 completed |
+| Dark green   | 5/5 completed |
 
 ## How it works
 

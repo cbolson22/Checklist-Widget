@@ -26,11 +26,11 @@ const COLOR_NO_DATA = new Color("#1C1C1E");
 
 function completionColor(count) {
   if (count === 0) return new Color("#FF3B30"); // red
-  if (count === 1) return new Color("#FF9500"); // orange
-  if (count === 2) return new Color("#FFCC00"); // amber
+  if (count === 1) return new Color("#FF6B00"); // dark orange
+  if (count === 2) return new Color("#FF9500"); // orange
   if (count === 3) return new Color("#FFD60A"); // yellow
-  if (count === 4) return new Color("#34C759"); // green
-  return new Color("#32FF6A"); // bright green (5/5)
+  if (count === 4) return new Color("#5AE679"); // light green
+  return new Color("#1A7A34"); // dark green (5/5)
 }
 
 // ── Data ─────────────────────────────────────────────────────────────────────
@@ -225,7 +225,7 @@ for (let row = 0; row < 7; row++) {
 
 right.addSpacer();
 
-// Mini legend: no-data → red → orange → yellow → green → bright green
+// Mini legend: no-data → red → dark orange → orange → yellow → light green → dark green
 const leg = right.addStack();
 leg.layoutHorizontally();
 leg.spacing = 2;
