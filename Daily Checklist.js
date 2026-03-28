@@ -24,13 +24,17 @@ const COLOR_SEP = new Color("#2C2C2E");
 const COLOR_FUTURE = new Color("#0D0D0F");
 const COLOR_NO_DATA = new Color("#1C1C1E");
 
+const completionColors = {
+  0: "#E8887A", // muted red (no tasks done)
+  1: "#E0A856", // warm ochre
+  2: "#E0A856", // warm ochre
+  3: "#C9B84C", // yellow-green
+  4: "#7FAD3A", // medium green
+  5: "#3B7A2A", // dark green
+};
+
 function completionColor(count) {
-  if (count === 0) return new Color("#FF3B30"); // red
-  if (count === 1) return new Color("#FF6B00"); // dark orange
-  if (count === 2) return new Color("#FF9500"); // orange
-  if (count === 3) return new Color("#FFD60A"); // yellow
-  if (count === 4) return new Color("#5AE679"); // light green
-  return new Color("#1A7A34"); // dark green (5/5)
+  return new Color(completionColors[count] ?? completionColors[5]);
 }
 
 // ── Data ─────────────────────────────────────────────────────────────────────
@@ -227,18 +231,18 @@ for (let row = 0; row < 7; row++) {
 
 right.addSpacer();
 
-// Mini legend: no-data → red → dark orange → orange → yellow → light green → dark green
+// Mini legend: muted red → warm ochre → yellow-green → medium green → dark green
 const leg = right.addStack();
 leg.layoutHorizontally();
 leg.spacing = 2;
 leg.centerAlignContent();
 
-const legendEntries = [null, 0, 1, 2, 3, 4, 5];
+const legendEntries = [0, 1, 3, 4, 5];
 for (const c of legendEntries) {
   const ld = leg.addStack();
   ld.size = new Size(7, 7);
   ld.cornerRadius = 3.5;
-  ld.backgroundColor = c === null ? COLOR_NO_DATA : completionColor(c);
+  ld.backgroundColor = completionColor(c);
 }
 
 widget.refreshAfterDate = new Date(Date.now() + 30 * 60 * 1000);
