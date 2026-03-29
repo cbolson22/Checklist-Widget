@@ -28,8 +28,8 @@ A medium (4×2) home screen widget with a daily to-do checklist on the left and 
 Edit the arrays at the top of `Daily Checklist.js`:
 
 ```js
-const TASKS = ["Workout", "Cardio", "Cook", "Read/Write", "Learn Topics"];
-const TASK_ICONS = ["🏋️", "🏃", "🍳", "📖", "🧠"];
+const TASKS = ["AHW", "Workout / Cardio", "Cook", "Read/Write", "Learn Topics"];
+const TASK_ICONS = ["🏠", "🏋️", "🍳", "📖", "🧠"];
 ```
 
 Icons and tasks must stay in the same order. Any number of tasks can be used (layout is designed for 5).

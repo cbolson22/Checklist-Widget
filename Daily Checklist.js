@@ -9,8 +9,8 @@
 //   3. Name it "Daily Checklist"
 //   4. Add a Medium widget to your home screen, choose this script
 
-const TASKS = ["Workout", "Cardio", "Cook", "Read/Write", "Learn Topics"];
-const TASK_ICONS = ["🏋️", "🏃", "🍳", "📖", "🧠"];
+const TASKS = ["AHW", "Workout / Cardio", "Cook", "Read/Write", "Learn Topics"];
+const TASK_ICONS = ["🏠", "🏋️", "🍳", "📖", "🧠"];
 
 // ── Colors ───────────────────────────────────────────────────────────────────
 const COLOR_BG = new Color("#111318");
